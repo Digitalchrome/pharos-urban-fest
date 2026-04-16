@@ -1,7 +1,3 @@
-const { Resend } = require('resend');
-
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const TYPE_LABELS = {
   createur: 'Créateur indépendant',
   friperie: 'Friperie / Vintage',
@@ -18,6 +14,9 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    const { Resend } = require('resend');
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
     const { nom, email, instagram, type, looks, ville, univers, lien } = req.body;
 
     if (!nom || !email || !type || !looks || !univers) {
