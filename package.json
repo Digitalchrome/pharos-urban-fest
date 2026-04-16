@@ -1,8 +1,7 @@
 {
   "name": "pharos-site",
   "version": "1.0.0",
-  "type": "module",
-  "dependencies": {
+"dependencies": {
     "resend": "^3.0.0"
   }
 }

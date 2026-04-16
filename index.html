@@ -4,235 +4,363 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Défilé Urbain — Pharos Urban Fest 2026 × Chrom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Barlow:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & Base ────────────────────────────────────────── */
+    /* ── Reset ─────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --black:   #0d0d0d;
-      --white:   #f5f5f5;
-      --grey:    #888;
-      --light:   #1a1a1a;
-      --border:  #2a2a2a;
-      --accent:  #e8e8e8;
-      --tag-bg:  #1e1e1e;
+      --ink:      #0c0a08;
+      --paper:    #e8e2d6;
+      --paper-dim:#a09688;
+      --surface:  #141210;
+      --surface2: #1c1916;
+      --border:   #2c2620;
+      --accent:   #c47c3e;
     }
+
     html { scroll-behavior: smooth; }
     body {
-      background: var(--black);
-      color: var(--white);
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: 'Barlow', sans-serif;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
     a { color: inherit; text-decoration: none; }
 
-    /* ── Layout helpers ──────────────────────────────────────── */
-    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
-    .section    { padding: 80px 0; border-bottom: 1px solid var(--border); }
-    .section:last-child { border-bottom: none; }
+    .condensed { font-family: 'Barlow Condensed', sans-serif; }
 
-    /* ── NAV ─────────────────────────────────────────────────── */
+    /* ── NAV ───────────────────────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(13,13,13,.92);
-      backdrop-filter: blur(8px);
+      background: rgba(12,10,8,.95);
+      backdrop-filter: blur(6px);
       border-bottom: 1px solid var(--border);
     }
     nav .inner {
-      max-width: 860px; margin: 0 auto; padding: 0 24px;
+      max-width: 1000px; margin: 0 auto; padding: 0 28px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 56px;
+      height: 52px;
     }
-    nav .logo { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-    nav .nav-links { display: flex; gap: 28px; }
-    nav .nav-links a { font-size: 12px; color: var(--grey); letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
-    nav .nav-links a:hover { color: var(--white); }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 900; letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a {
+      font-size: 12px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--paper-dim);
+      transition: color .18s;
+    }
+    .nav-links a:hover { color: var(--paper); }
     .nav-cta {
-      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      padding: 8px 18px; border: 1px solid var(--white); color: var(--white);
-      transition: background .2s, color .2s;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; padding: 7px 20px;
+      border: 1px solid var(--paper); color: var(--paper);
+      transition: background .18s, color .18s;
     }
-    .nav-cta:hover { background: var(--white); color: var(--black); }
+    .nav-cta:hover { background: var(--paper); color: var(--ink); }
+    @media (max-width: 600px) { .nav-links { display: none; } }
 
-    /* ── HERO ────────────────────────────────────────────────── */
-    #hero {
-      padding-top: 120px; padding-bottom: 100px;
-      border-bottom: 1px solid var(--border);
-    }
-    .kicker {
-      display: inline-block;
-      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--grey); margin-bottom: 24px;
+    /* ── LAYOUT ────────────────────────────────────────── */
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 28px; }
+    hr.rule { border: none; border-top: 1px solid var(--border); }
+
+    /* ── HERO ──────────────────────────────────────────── */
+    #hero { padding: 128px 0 80px; }
+
+    .hero-eyebrow {
+      font-size: 11px; font-weight: 500; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 28px;
     }
     h1 {
-      font-size: clamp(36px, 7vw, 72px);
-      font-weight: 900; line-height: 1.0;
-      letter-spacing: -.02em;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(72px, 16vw, 168px);
+      font-weight: 900;
+      line-height: .92;
+      letter-spacing: -.01em;
       text-transform: uppercase;
-      margin-bottom: 24px;
+      margin-bottom: 0;
     }
-    h1 span { display: block; }
-    h1 .sub { font-size: clamp(18px, 3.5vw, 34px); font-weight: 300; color: var(--grey); margin-top: 8px; }
-    .hero-meta {
-      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px;
+    h1 .line-dim { color: var(--paper-dim); }
+
+    .hero-rule {
+      border: none; border-top: 1px solid var(--border);
+      margin: 36px 0;
     }
-    .tag {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-size: 13px; font-weight: 600; letter-spacing: .06em;
-      padding: 8px 16px; border: 1px solid var(--border);
-      background: var(--tag-bg);
+    .hero-info-row {
+      display: flex; gap: 0; flex-wrap: wrap;
     }
-    .tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--white); }
-    .hero-description {
-      margin-top: 40px; max-width: 560px;
-      font-size: 17px; line-height: 1.7; color: #bbb;
+    .hero-info-item {
+      display: flex; flex-direction: column; gap: 3px;
+      padding: 0 32px 0 0; border-right: 1px solid var(--border);
+      margin-right: 32px;
     }
-    .hero-cta {
-      margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;
+    .hero-info-item:last-child { border-right: none; margin-right: 0; }
+    .info-label { font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--paper-dim); }
+    .info-val { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: .04em; }
+
+    .hero-body {
+      margin-top: 40px; max-width: 520px;
+      font-size: 17px; line-height: 1.72; color: var(--paper-dim);
     }
+    .hero-body strong { color: var(--paper); font-weight: 500; }
+
+    .hero-cta { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
     .btn-primary {
-      display: inline-block; padding: 14px 32px;
-      background: var(--white); color: var(--black);
-      font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      transition: opacity .2s;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; padding: 14px 36px;
+      background: var(--paper); color: var(--ink);
+      transition: opacity .18s;
     }
-    .btn-primary:hover { opacity: .85; }
+    .btn-primary:hover { opacity: .88; }
     .btn-ghost {
-      display: inline-block; padding: 13px 31px;
-      border: 1px solid var(--border); color: var(--grey);
-      font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-      transition: border-color .2s, color .2s;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; padding: 13px 35px;
+      border: 1px solid var(--border); color: var(--paper-dim);
+      transition: border-color .18s, color .18s;
     }
-    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+    .btn-ghost:hover { border-color: var(--paper); color: var(--paper); }
 
-    /* ── PARTENAIRES badge ───────────────────────────────────── */
+    /* ── PARTNERS BAR ──────────────────────────────────── */
     .partners-bar {
-      padding: 28px 0; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+      display: flex; align-items: center; gap: 0; flex-wrap: wrap;
     }
-    .partners-bar .label {
-      font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--grey); flex-shrink: 0;
+    .pb-label {
+      font-size: 10px; font-weight: 500; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--paper-dim);
+      margin-right: 24px; flex-shrink: 0;
     }
-    .partners-bar .divider { width: 1px; height: 20px; background: var(--border); }
-    .partner-name {
-      font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    .pb-sep { width: 1px; height: 16px; background: var(--border); margin: 0 24px; }
+    .pb-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 16px; font-weight: 900; letter-spacing: .1em;
+      text-transform: uppercase;
     }
-    .partner-name.pharos { border: 1px solid #555; padding: 4px 12px; }
-    .partner-name.chrom  { padding: 4px 0; }
+    .pb-role { font-size: 11px; color: var(--paper-dim); letter-spacing: .06em; margin-left: 8px; }
 
-    /* ── SECTIONS headings ───────────────────────────────────── */
-    .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: var(--grey); margin-bottom: 16px;
+    /* ── SECTION BASE ──────────────────────────────────── */
+    .section { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+
+    .s-label {
+      font-size: 10px; font-weight: 500; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 10px;
     }
+    .s-label::before {
+      content: ''; display: block;
+      width: 24px; height: 1px; background: var(--accent);
+    }
+
     h2 {
-      font-size: clamp(26px, 4vw, 40px); font-weight: 900; letter-spacing: -.01em;
-      text-transform: uppercase; margin-bottom: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 900; letter-spacing: -.01em;
+      text-transform: uppercase; line-height: 1;
+      margin-bottom: 16px;
     }
-    .section-intro { font-size: 17px; color: #bbb; line-height: 1.7; max-width: 600px; margin-bottom: 48px; }
+    .s-intro {
+      font-size: 17px; color: var(--paper-dim);
+      line-height: 1.72; max-width: 580px;
+      margin-bottom: 52px;
+    }
+    .s-intro strong { color: var(--paper); font-weight: 500; }
 
-    /* ── CONCEPT grid ────────────────────────────────────────── */
-    .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--border); }
+    /* ── CONCEPT ───────────────────────────────────────── */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--border);
+    }
+    @media (max-width: 700px) {
+      .concept-grid { grid-template-columns: repeat(2, 1fr); }
+    }
     .concept-card {
-      background: var(--light); padding: 28px 24px;
+      padding: 32px 24px;
+      border-right: 1px solid var(--border);
+      position: relative; overflow: hidden;
     }
-    .concept-card .icon { font-size: 24px; margin-bottom: 14px; }
-    .concept-card h3 { font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
-    .concept-card p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+    .concept-card:last-child { border-right: none; }
+    @media (max-width: 700px) {
+      .concept-card:nth-child(2) { border-right: none; }
+      .concept-card:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+      .concept-card:nth-child(4) { border-right: none; border-top: 1px solid var(--border); }
+    }
+    .card-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 72px; font-weight: 900; line-height: 1;
+      color: var(--surface2); margin-bottom: 24px;
+      user-select: none;
+    }
+    .concept-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; margin-bottom: 10px;
+      color: var(--paper);
+    }
+    .concept-card p { font-size: 14px; color: var(--paper-dim); line-height: 1.65; }
 
-    /* ── OFFRE créateurs ─────────────────────────────────────── */
-    .offre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
-    @media (max-width: 580px) { .offre-grid { grid-template-columns: 1fr; } }
+    /* ── OFFRE ─────────────────────────────────────────── */
+    .offre-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+    }
+    @media (max-width: 600px) { .offre-grid { grid-template-columns: 1fr; } }
     .offre-item {
-      background: var(--light); padding: 28px 24px;
+      padding: 36px 28px;
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
-    .offre-item .num { font-size: 36px; font-weight: 900; color: #333; margin-bottom: 8px; }
-    .offre-item h3 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
-    .offre-item p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+    .offre-item:nth-child(2) { border-right: none; }
+    .offre-item:nth-child(4) { border-right: none; }
+    .offre-item:nth-child(3),
+    .offre-item:nth-child(4) { border-bottom: none; }
+    @media (max-width: 600px) {
+      .offre-item { border-right: none !important; }
+      .offre-item:last-child { border-bottom: none; }
+    }
+    .offre-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px; font-weight: 700; letter-spacing: .14em;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .offre-item h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 700; letter-spacing: .04em;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .offre-item p { font-size: 14px; color: var(--paper-dim); line-height: 1.65; }
 
-    /* ── PROGRAMME timeline ──────────────────────────────────── */
-    .timeline { display: flex; flex-direction: column; gap: 0; }
+    /* ── PROGRAMME ─────────────────────────────────────── */
+    .timeline { border-top: 1px solid var(--border); }
     .tl-item {
-      display: grid; grid-template-columns: 80px 1fr;
-      gap: 0 24px; padding: 20px 0;
+      display: grid; grid-template-columns: 72px 1fr;
+      gap: 0 28px; padding: 22px 0;
       border-bottom: 1px solid var(--border);
     }
     .tl-item:last-child { border-bottom: none; }
-    .tl-time { font-size: 14px; font-weight: 700; color: var(--grey); padding-top: 2px; }
-    .tl-content h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
-    .tl-content p  { font-size: 13px; color: var(--grey); }
-    .tl-highlight .tl-time { color: var(--white); }
-    .tl-highlight .tl-content h3 { color: var(--white); }
-
-    /* ── CONDITIONS ──────────────────────────────────────────── */
-    .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-    @media (max-width: 580px) { .cond-grid { grid-template-columns: 1fr; } }
-    .cond-block h3 { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; }
-    .cond-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .cond-list li { font-size: 15px; display: flex; gap: 10px; align-items: flex-start; }
-    .cond-list li::before { content: '—'; color: var(--grey); flex-shrink: 0; margin-top: 2px; }
-
-    /* ── FORMULAIRE ──────────────────────────────────────────── */
-    #candidature { background: var(--light); }
-    .form-wrapper { max-width: 620px; }
-    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    @media (max-width: 580px) { .form-grid { grid-template-columns: 1fr; } }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group.full { grid-column: 1 / -1; }
-    label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); }
-    input, select, textarea {
-      background: var(--black); border: 1px solid var(--border);
-      color: var(--white); font-size: 15px; font-family: inherit;
-      padding: 12px 14px; outline: none;
-      transition: border-color .2s;
-      -webkit-appearance: none;
+    .tl-time {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700; letter-spacing: .04em;
+      color: var(--paper-dim); padding-top: 2px;
     }
-    input::placeholder, textarea::placeholder { color: #444; }
-    input:focus, select:focus, textarea:focus { border-color: #555; }
-    select option { background: #1a1a1a; }
-    textarea { resize: vertical; min-height: 100px; }
-    .form-note { font-size: 12px; color: var(--grey); margin-top: 20px; }
-    .submit-btn {
-      display: inline-block; padding: 16px 40px; margin-top: 24px;
-      background: var(--white); color: var(--black);
-      font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
-      border: none; cursor: pointer; font-family: inherit;
-      transition: opacity .2s;
+    .tl-highlight .tl-time { color: var(--accent); }
+    .tl-content h3 {
+      font-size: 15px; font-weight: 500; margin-bottom: 3px;
+      color: var(--paper);
     }
-    .submit-btn:hover { opacity: .85; }
+    .tl-highlight .tl-content h3 { font-weight: 500; }
+    .tl-content p { font-size: 13px; color: var(--paper-dim); }
+
+    /* ── CONDITIONS ────────────────────────────────────── */
+    .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    @media (max-width: 600px) { .cond-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .cond-block h3 {
+      font-size: 11px; font-weight: 500; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--paper-dim);
+      margin-bottom: 20px;
+    }
+    .cond-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .cond-list li {
+      font-size: 15px; display: flex; gap: 12px;
+      align-items: flex-start; color: var(--paper);
+    }
+    .cond-list li::before {
+      content: '—'; color: var(--accent); flex-shrink: 0; margin-top: 2px;
+    }
+
+    /* ── FORMULAIRE ────────────────────────────────────── */
+    #candidature { background: var(--surface); }
+
     .deadline-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--border); padding: 10px 16px;
-      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      margin-bottom: 32px;
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid var(--border);
+      padding: 9px 18px; margin-bottom: 36px;
+      font-size: 12px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--paper-dim);
     }
-    .deadline-badge .pulse {
-      width: 8px; height: 8px; border-radius: 50%; background: #e0e0e0;
-      animation: pulse 1.4s ease-in-out infinite;
+    .pulse {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.6s ease-in-out infinite;
+      flex-shrink: 0;
     }
-    @keyframes pulse {
-      0%,100% { opacity: 1; } 50% { opacity: .3; }
-    }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
 
-    /* ── FOOTER ──────────────────────────────────────────────── */
-    footer {
-      padding: 40px 0; border-top: 1px solid var(--border);
+    .form-wrapper { max-width: 640px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label {
+      font-size: 10px; font-weight: 500; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--paper-dim);
     }
+    input, select, textarea {
+      background: var(--ink); border: 1px solid var(--border);
+      color: var(--paper); font-size: 15px; font-family: 'Barlow', sans-serif;
+      padding: 12px 14px; outline: none;
+      transition: border-color .18s;
+      -webkit-appearance: none; border-radius: 0;
+    }
+    input::placeholder, textarea::placeholder { color: #3d3830; }
+    input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+    select option { background: var(--surface); }
+    textarea { resize: vertical; min-height: 110px; }
+
+    .form-note {
+      font-size: 12px; color: var(--paper-dim); margin-top: 20px; line-height: 1.6;
+    }
+    .submit-btn {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 15px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; padding: 16px 44px;
+      background: var(--paper); color: var(--ink);
+      border: none; cursor: pointer; margin-top: 24px;
+      transition: opacity .18s;
+    }
+    .submit-btn:hover { opacity: .88; }
+    .submit-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+    #form-success {
+      display: none; padding: 36px;
+      border: 1px solid var(--border);
+      margin-top: 20px;
+    }
+    #form-success h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px; font-weight: 900; letter-spacing: .04em;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    #form-success p { font-size: 15px; color: var(--paper-dim); line-height: 1.7; }
+    #form-success a { color: var(--paper); text-decoration: underline; }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    footer { padding: 36px 0; border-top: 1px solid var(--border); }
     .footer-inner {
       display: flex; flex-wrap: wrap; gap: 16px;
       align-items: center; justify-content: space-between;
     }
-    .footer-left { font-size: 12px; color: var(--grey); }
-    .footer-right { display: flex; gap: 24px; }
-    .footer-right a { font-size: 12px; color: var(--grey); transition: color .2s; }
-    .footer-right a:hover { color: var(--white); }
-
-    /* ── Responsive nav ──────────────────────────────────────── */
-    @media (max-width: 600px) {
-      .nav-links { display: none; }
-    }
+    .footer-left { font-size: 12px; color: var(--paper-dim); }
+    .footer-left a { transition: color .18s; }
+    .footer-left a:hover { color: var(--paper); }
+    .footer-right { display: flex; gap: 28px; }
+    .footer-right a { font-size: 12px; color: var(--paper-dim); transition: color .18s; }
+    .footer-right a:hover { color: var(--paper); }
   </style>
 </head>
 <body>
@@ -240,7 +368,7 @@
 <!-- NAV -->
 <nav>
   <div class="inner">
-    <span class="logo">Pharos Urban Fest × Chrom</span>
+    <span class="nav-logo">Pharos Urban Fest × Chrom</span>
     <div class="nav-links">
       <a href="#concept">Concept</a>
       <a href="#programme">Programme</a>
@@ -251,20 +379,29 @@
 </nav>
 
 <!-- HERO -->
-<div class="container">
+<div class="wrap">
   <section id="hero">
-    <span class="kicker">Pharos Urban Fest 2026 · Arras · En partenariat avec Chrom</span>
+    <p class="hero-eyebrow">Pharos Urban Fest 2026 · En partenariat avec Chrom</p>
     <h1>
-      <span>Défilé</span>
+      <span class="line-dim">Défilé</span><br>
       <span>Urbain</span>
-      <span class="sub">Pharos Urban Fest × Chrom</span>
     </h1>
-    <div class="hero-meta">
-      <span class="tag"><span class="dot"></span>22 juillet 2026</span>
-      <span class="tag"><span class="dot"></span>Place des Héros, Arras</span>
-      <span class="tag"><span class="dot"></span>18h30 – 22h30</span>
+    <hr class="hero-rule" />
+    <div class="hero-info-row">
+      <div class="hero-info-item">
+        <span class="info-label">Date</span>
+        <span class="info-val condensed">22 Juillet 2026</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="info-label">Lieu</span>
+        <span class="info-val condensed">Place des Héros, Arras</span>
+      </div>
+      <div class="hero-info-item">
+        <span class="info-label">Horaire</span>
+        <span class="info-val condensed">18h30 – 22h30</span>
+      </div>
     </div>
-    <p class="hero-description">
+    <p class="hero-body">
       Un défilé de mode urbaine en plein air organisé par le <strong>Pharos Urban Fest</strong>, en partenariat avec Chrom. Mannequins professionnels, scène live, public festival. Si tu crées, c'est ta scène.
     </p>
     <div class="hero-cta">
@@ -274,48 +411,47 @@
   </section>
 </div>
 
-<!-- PARTENAIRES BAR -->
-<div class="container">
+<!-- PARTNERS BAR -->
+<div class="wrap">
   <div class="partners-bar">
-    <span class="label">Organisateur</span>
-    <div class="divider"></div>
-    <span class="partner-name pharos">PHAROS URBAN FEST</span>
-    <span style="color: var(--grey); font-size: 12px;">Cultures en effervescence</span>
-    <div class="divider"></div>
-    <span class="label" style="margin-left: 8px;">Partenaire créatif</span>
-    <div class="divider"></div>
-    <span class="partner-name chrom">CHROM</span>
-    <div class="divider"></div>
-    <span style="color: var(--grey); font-size: 12px; letter-spacing:.04em">ME AGENCY</span>
+    <span class="pb-label">Organisateur</span>
+    <span class="pb-name">Pharos Urban Fest</span>
+    <span class="pb-role">Cultures en effervescence</span>
+    <span class="pb-sep"></span>
+    <span class="pb-label">Partenaire créatif</span>
+    <span class="pb-name">Chrom</span>
+    <span class="pb-sep"></span>
+    <span class="pb-label">Casting</span>
+    <span class="pb-name">ME Agency</span>
   </div>
 </div>
 
 <!-- CONCEPT -->
-<div class="container">
+<div class="wrap">
   <section id="concept" class="section">
-    <p class="section-label">Le projet</p>
+    <p class="s-label">Le projet</p>
     <h2>Mode, rue & scène live</h2>
-    <p class="section-intro">
-      Ce n'est pas un défilé classique dans une salle fermée. C'est un défilé dansé en plein air, organisé par le <strong>Pharos Urban Fest</strong> — festival urbain de référence à Arras — en partenariat avec Chrom qui assure la direction artistique, et ME Agency pour le casting.
+    <p class="s-intro">
+      Ce n'est pas un défilé classique dans une salle fermée. C'est un défilé dansé en plein air, organisé par le <strong>Pharos Urban Fest</strong> — festival urbain de référence à Arras — en partenariat avec Chrom pour la direction artistique et ME Agency pour le casting.
     </p>
     <div class="concept-grid">
       <div class="concept-card">
-        <div class="icon">👟</div>
+        <div class="card-num">01</div>
         <h3>Mode urbaine</h3>
         <p>Streetwear, hip-hop, création indépendante. Des pièces portées sur scène devant un vrai public festival.</p>
       </div>
       <div class="concept-card">
-        <div class="icon">🎯</div>
+        <div class="card-num">02</div>
         <h3>Mannequins ME Agency</h3>
         <p>8 mannequins castés et gérés par ME Agency. Profil professionnel, habillage en loge, coordination complète.</p>
       </div>
       <div class="concept-card">
-        <div class="icon">🎬</div>
+        <div class="card-num">03</div>
         <h3>Captation complète</h3>
-        <p>Clip événement, photos défilé &amp; backstage, contenus verticaux Reels/TikTok. Le contenu te revient intégralement.</p>
+        <p>Clip événement, photos défilé & backstage, contenus verticaux Reels/TikTok. Le contenu te revient intégralement.</p>
       </div>
       <div class="concept-card">
-        <div class="icon">📍</div>
+        <div class="card-num">04</div>
         <h3>Stand marketplace</h3>
         <p>Un chalet 3×3 offert Place des Héros, face à la scène. Vente directe au public du festival de 18h30 à 22h30.</p>
       </div>
@@ -324,29 +460,29 @@
 </div>
 
 <!-- OFFRE CRÉATEURS -->
-<div class="container">
+<div class="wrap">
   <section id="offre" class="section">
-    <p class="section-label">Ce que tu reçois</p>
+    <p class="s-label">Ce que tu reçois</p>
     <h2>L'offre créateurs</h2>
-    <p class="section-intro">Chrom prend en charge la logistique. Toi, tu amènes tes pièces et ta vision.</p>
+    <p class="s-intro">Chrom prend en charge la logistique. Toi, tu amènes tes pièces et ta vision.</p>
     <div class="offre-grid">
       <div class="offre-item">
-        <div class="num">01</div>
+        <div class="offre-num">01 /</div>
         <h3>Défilé professionnel</h3>
         <p>Tes looks présentés sur scène en défilé dansé devant le public du Pharos Urban Fest. Mannequins + MC qui présente ta marque.</p>
       </div>
       <div class="offre-item">
-        <div class="num">02</div>
+        <div class="offre-num">02 /</div>
         <h3>Stand marketplace offert</h3>
         <p>Chalet 3×3, Place des Héros, face à la scène. 4 heures de vente directe au public du festival.</p>
       </div>
       <div class="offre-item">
-        <div class="num">03</div>
+        <div class="offre-num">03 /</div>
         <h3>Captation & contenu</h3>
         <p>Clip événement 2-3 min, photos défilé/backstage, Reels et TikTok. Tout le contenu t'appartient pour tes réseaux et ton book.</p>
       </div>
       <div class="offre-item">
-        <div class="num">04</div>
+        <div class="offre-num">04 /</div>
         <h3>Visibilité croisée</h3>
         <p>Crosspostage réseaux Pharos Urban Fest, Ville d'Arras et Chrom. Ton nom associé à l'événement urbain de référence de la région.</p>
       </div>
@@ -355,16 +491,16 @@
 </div>
 
 <!-- PROGRAMME -->
-<div class="container">
+<div class="wrap">
   <section id="programme" class="section">
-    <p class="section-label">Le 22 juillet</p>
+    <p class="s-label">Le 22 juillet</p>
     <h2>Ta soirée en détail</h2>
-    <p class="section-intro">Programme du bloc Chrom — Place des Héros, Arras.</p>
+    <p class="s-intro">Programme du bloc Chrom — Place des Héros, Arras.</p>
     <div class="timeline">
       <div class="tl-item">
         <span class="tl-time">16h30</span>
         <div class="tl-content">
-          <h3>Arrivée &amp; installation</h3>
+          <h3>Arrivée & installation</h3>
           <p>Mise en place de ton stand, briefing avec l'équipe Chrom, essayage mannequins en loge.</p>
         </div>
       </div>
@@ -392,7 +528,7 @@
       <div class="tl-item">
         <span class="tl-time">22h30</span>
         <div class="tl-content">
-          <h3>Fin &amp; démontage</h3>
+          <h3>Fin & démontage</h3>
           <p>Récupération de tes pièces, clôture du stand.</p>
         </div>
       </div>
@@ -401,9 +537,9 @@
 </div>
 
 <!-- CONDITIONS -->
-<div class="container">
+<div class="wrap">
   <section class="section">
-    <p class="section-label">Conditions de participation</p>
+    <p class="s-label">Conditions de participation</p>
     <h2>Ce qu'on attend de toi</h2>
     <div class="cond-grid">
       <div class="cond-block">
@@ -427,10 +563,10 @@
 </div>
 
 <!-- FORMULAIRE -->
-<div id="candidature" style="background: var(--light);">
-  <div class="container">
+<div id="candidature" style="background: var(--surface);">
+  <div class="wrap">
     <section class="section">
-      <p class="section-label">Candidater</p>
+      <p class="s-label">Candidater</p>
       <h2>Proposer sa collection</h2>
       <div class="deadline-badge">
         <span class="pulse"></span>
@@ -482,9 +618,9 @@
           <p class="form-note">* Champs obligatoires. Places limitées — on cherche des créateurs avec une vision, pas un CV.</p>
           <button type="submit" class="submit-btn">Envoyer ma candidature</button>
         </form>
-        <div id="form-success" style="display:none; padding: 32px; border: 1px solid var(--border); margin-top: 24px;">
-          <h3 style="font-size:18px; margin-bottom: 8px;">Candidature reçue ✓</h3>
-          <p style="color: var(--grey); font-size:14px;">On revient vers toi avant le 10 mai. En attendant, suis-nous sur <a href="https://instagram.com/chromclub" style="color:var(--white); text-decoration:underline;">@chromclub</a>.</p>
+        <div id="form-success">
+          <h3>Candidature reçue</h3>
+          <p>On revient vers toi avant le 10 mai. En attendant, suis-nous sur <a href="https://instagram.com/chromclub">@chromclub</a>.</p>
         </div>
       </div>
     </section>
@@ -492,11 +628,13 @@
 </div>
 
 <!-- FOOTER -->
-<div class="container">
+<div class="wrap">
   <footer>
     <div class="footer-inner">
       <div class="footer-left">
-        © 2026 Pharos Urban Fest · Défilé Urbain en partenariat avec Chrom · <a href="mailto:gabrieldebecker@icloud.com">gabrieldebecker@icloud.com</a> · <a href="https://instagram.com/chromclub">@chromclub</a>
+        © 2026 Pharos Urban Fest · Défilé Urbain en partenariat avec Chrom ·
+        <a href="mailto:gabrieldebecker@icloud.com">gabrieldebecker@icloud.com</a> ·
+        <a href="https://instagram.com/chromclub">@chromclub</a>
       </div>
       <div class="footer-right">
         <a href="https://instagram.com/chromclub">Instagram</a>
