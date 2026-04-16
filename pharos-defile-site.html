@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Défilé Urbain — Pharos Urban Fest 2026 × Chrom</title>
+  <style>
+    /* ── Reset & Base ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #0d0d0d;
+      --white:   #f5f5f5;
+      --grey:    #888;
+      --light:   #1a1a1a;
+      --border:  #2a2a2a;
+      --accent:  #e8e8e8;
+      --tag-bg:  #1e1e1e;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Layout helpers ──────────────────────────────────────── */
+    .container { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+    .section    { padding: 80px 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+
+    /* ── NAV ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,13,13,.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav .inner {
+      max-width: 860px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    nav .logo { font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    nav .nav-links { display: flex; gap: 28px; }
+    nav .nav-links a { font-size: 12px; color: var(--grey); letter-spacing: .08em; text-transform: uppercase; transition: color .2s; }
+    nav .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: 8px 18px; border: 1px solid var(--white); color: var(--white);
+      transition: background .2s, color .2s;
+    }
+    .nav-cta:hover { background: var(--white); color: var(--black); }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero {
+      padding-top: 120px; padding-bottom: 100px;
+      border-bottom: 1px solid var(--border);
+    }
+    .kicker {
+      display: inline-block;
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--grey); margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 900; line-height: 1.0;
+      letter-spacing: -.02em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    h1 span { display: block; }
+    h1 .sub { font-size: clamp(18px, 3.5vw, 34px); font-weight: 300; color: var(--grey); margin-top: 8px; }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 12px; margin-top: 40px;
+    }
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 600; letter-spacing: .06em;
+      padding: 8px 16px; border: 1px solid var(--border);
+      background: var(--tag-bg);
+    }
+    .tag .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--white); }
+    .hero-description {
+      margin-top: 40px; max-width: 560px;
+      font-size: 17px; line-height: 1.7; color: #bbb;
+    }
+    .hero-cta {
+      margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block; padding: 14px 32px;
+      background: var(--white); color: var(--black);
+      font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      transition: opacity .2s;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-ghost {
+      display: inline-block; padding: 13px 31px;
+      border: 1px solid var(--border); color: var(--grey);
+      font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      transition: border-color .2s, color .2s;
+    }
+    .btn-ghost:hover { border-color: var(--white); color: var(--white); }
+
+    /* ── PARTENAIRES badge ───────────────────────────────────── */
+    .partners-bar {
+      padding: 28px 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+    }
+    .partners-bar .label {
+      font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--grey); flex-shrink: 0;
+    }
+    .partners-bar .divider { width: 1px; height: 20px; background: var(--border); }
+    .partner-name {
+      font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    }
+    .partner-name.pharos { border: 1px solid #555; padding: 4px 12px; }
+    .partner-name.chrom  { padding: 4px 0; }
+
+    /* ── SECTIONS headings ───────────────────────────────────── */
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--grey); margin-bottom: 16px;
+    }
+    h2 {
+      font-size: clamp(26px, 4vw, 40px); font-weight: 900; letter-spacing: -.01em;
+      text-transform: uppercase; margin-bottom: 20px;
+    }
+    .section-intro { font-size: 17px; color: #bbb; line-height: 1.7; max-width: 600px; margin-bottom: 48px; }
+
+    /* ── CONCEPT grid ────────────────────────────────────────── */
+    .concept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--border); }
+    .concept-card {
+      background: var(--light); padding: 28px 24px;
+    }
+    .concept-card .icon { font-size: 24px; margin-bottom: 14px; }
+    .concept-card h3 { font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 8px; }
+    .concept-card p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+    /* ── OFFRE créateurs ─────────────────────────────────────── */
+    .offre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+    @media (max-width: 580px) { .offre-grid { grid-template-columns: 1fr; } }
+    .offre-item {
+      background: var(--light); padding: 28px 24px;
+    }
+    .offre-item .num { font-size: 36px; font-weight: 900; color: #333; margin-bottom: 8px; }
+    .offre-item h3 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+    .offre-item p { font-size: 14px; color: var(--grey); line-height: 1.6; }
+
+    /* ── PROGRAMME timeline ──────────────────────────────────── */
+    .timeline { display: flex; flex-direction: column; gap: 0; }
+    .tl-item {
+      display: grid; grid-template-columns: 80px 1fr;
+      gap: 0 24px; padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tl-item:last-child { border-bottom: none; }
+    .tl-time { font-size: 14px; font-weight: 700; color: var(--grey); padding-top: 2px; }
+    .tl-content h3 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .tl-content p  { font-size: 13px; color: var(--grey); }
+    .tl-highlight .tl-time { color: var(--white); }
+    .tl-highlight .tl-content h3 { color: var(--white); }
+
+    /* ── CONDITIONS ──────────────────────────────────────────── */
+    .cond-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    @media (max-width: 580px) { .cond-grid { grid-template-columns: 1fr; } }
+    .cond-block h3 { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); margin-bottom: 16px; }
+    .cond-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .cond-list li { font-size: 15px; display: flex; gap: 10px; align-items: flex-start; }
+    .cond-list li::before { content: '—'; color: var(--grey); flex-shrink: 0; margin-top: 2px; }
+
+    /* ── FORMULAIRE ──────────────────────────────────────────── */
+    #candidature { background: var(--light); }
+    .form-wrapper { max-width: 620px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 580px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group.full { grid-column: 1 / -1; }
+    label { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); }
+    input, select, textarea {
+      background: var(--black); border: 1px solid var(--border);
+      color: var(--white); font-size: 15px; font-family: inherit;
+      padding: 12px 14px; outline: none;
+      transition: border-color .2s;
+      -webkit-appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: #444; }
+    input:focus, select:focus, textarea:focus { border-color: #555; }
+    select option { background: #1a1a1a; }
+    textarea { resize: vertical; min-height: 100px; }
+    .form-note { font-size: 12px; color: var(--grey); margin-top: 20px; }
+    .submit-btn {
+      display: inline-block; padding: 16px 40px; margin-top: 24px;
+      background: var(--white); color: var(--black);
+      font-size: 13px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      border: none; cursor: pointer; font-family: inherit;
+      transition: opacity .2s;
+    }
+    .submit-btn:hover { opacity: .85; }
+    .deadline-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--border); padding: 10px 16px;
+      font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+    .deadline-badge .pulse {
+      width: 8px; height: 8px; border-radius: 50%; background: #e0e0e0;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: .3; }
+    }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      padding: 40px 0; border-top: 1px solid var(--border);
+    }
+    .footer-inner {
+      display: flex; flex-wrap: wrap; gap: 16px;
+      align-items: center; justify-content: space-between;
+    }
+    .footer-left { font-size: 12px; color: var(--grey); }
+    .footer-right { display: flex; gap: 24px; }
+    .footer-right a { font-size: 12px; color: var(--grey); transition: color .2s; }
+    .footer-right a:hover { color: var(--white); }
+
+    /* ── Responsive nav ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="inner">
+    <span class="logo">Pharos Urban Fest × Chrom</span>
+    <div class="nav-links">
+      <a href="#concept">Concept</a>
+      <a href="#programme">Programme</a>
+      <a href="#offre">Offre créateurs</a>
+    </div>
+    <a href="#candidature" class="nav-cta">Candidater</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="container">
+  <section id="hero">
+    <span class="kicker">Pharos Urban Fest 2026 · Arras · En partenariat avec Chrom</span>
+    <h1>
+      <span>Défilé</span>
+      <span>Urbain</span>
+      <span class="sub">Pharos Urban Fest × Chrom</span>
+    </h1>
+    <div class="hero-meta">
+      <span class="tag"><span class="dot"></span>22 juillet 2026</span>
+      <span class="tag"><span class="dot"></span>Place des Héros, Arras</span>
+      <span class="tag"><span class="dot"></span>18h30 – 22h30</span>
+    </div>
+    <p class="hero-description">
+      Un défilé de mode urbaine en plein air organisé par le <strong>Pharos Urban Fest</strong>, en partenariat avec Chrom. Mannequins professionnels, scène live, public festival. Si tu crées, c'est ta scène.
+    </p>
+    <div class="hero-cta">
+      <a href="#candidature" class="btn-primary">Proposer sa collection</a>
+      <a href="#concept" class="btn-ghost">Découvrir l'événement</a>
+    </div>
+  </section>
+</div>
+
+<!-- PARTENAIRES BAR -->
+<div class="container">
+  <div class="partners-bar">
+    <span class="label">Organisateur</span>
+    <div class="divider"></div>
+    <span class="partner-name pharos">PHAROS URBAN FEST</span>
+    <span style="color: var(--grey); font-size: 12px;">Cultures en effervescence</span>
+    <div class="divider"></div>
+    <span class="label" style="margin-left: 8px;">Partenaire créatif</span>
+    <div class="divider"></div>
+    <span class="partner-name chrom">CHROM</span>
+    <div class="divider"></div>
+    <span style="color: var(--grey); font-size: 12px; letter-spacing:.04em">ME AGENCY</span>
+  </div>
+</div>
+
+<!-- CONCEPT -->
+<div class="container">
+  <section id="concept" class="section">
+    <p class="section-label">Le projet</p>
+    <h2>Mode, rue & scène live</h2>
+    <p class="section-intro">
+      Ce n'est pas un défilé classique dans une salle fermée. C'est un défilé dansé en plein air, organisé par le <strong>Pharos Urban Fest</strong> — festival urbain de référence à Arras — en partenariat avec Chrom qui assure la direction artistique, et ME Agency pour le casting.
+    </p>
+    <div class="concept-grid">
+      <div class="concept-card">
+        <div class="icon">👟</div>
+        <h3>Mode urbaine</h3>
+        <p>Streetwear, hip-hop, création indépendante. Des pièces portées sur scène devant un vrai public festival.</p>
+      </div>
+      <div class="concept-card">
+        <div class="icon">🎯</div>
+        <h3>Mannequins ME Agency</h3>
+        <p>8 mannequins castés et gérés par ME Agency. Profil professionnel, habillage en loge, coordination complète.</p>
+      </div>
+      <div class="concept-card">
+        <div class="icon">🎬</div>
+        <h3>Captation complète</h3>
+        <p>Clip événement, photos défilé &amp; backstage, contenus verticaux Reels/TikTok. Le contenu te revient intégralement.</p>
+      </div>
+      <div class="concept-card">
+        <div class="icon">📍</div>
+        <h3>Stand marketplace</h3>
+        <p>Un chalet 3×3 offert Place des Héros, face à la scène. Vente directe au public du festival de 18h30 à 22h30.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- OFFRE CRÉATEURS -->
+<div class="container">
+  <section id="offre" class="section">
+    <p class="section-label">Ce que tu reçois</p>
+    <h2>L'offre créateurs</h2>
+    <p class="section-intro">Chrom prend en charge la logistique. Toi, tu amènes tes pièces et ta vision.</p>
+    <div class="offre-grid">
+      <div class="offre-item">
+        <div class="num">01</div>
+        <h3>Défilé professionnel</h3>
+        <p>Tes looks présentés sur scène en défilé dansé devant le public du Pharos Urban Fest. Mannequins + MC qui présente ta marque.</p>
+      </div>
+      <div class="offre-item">
+        <div class="num">02</div>
+        <h3>Stand marketplace offert</h3>
+        <p>Chalet 3×3, Place des Héros, face à la scène. 4 heures de vente directe au public du festival.</p>
+      </div>
+      <div class="offre-item">
+        <div class="num">03</div>
+        <h3>Captation & contenu</h3>
+        <p>Clip événement 2-3 min, photos défilé/backstage, Reels et TikTok. Tout le contenu t'appartient pour tes réseaux et ton book.</p>
+      </div>
+      <div class="offre-item">
+        <div class="num">04</div>
+        <h3>Visibilité croisée</h3>
+        <p>Crosspostage réseaux Pharos Urban Fest, Ville d'Arras et Chrom. Ton nom associé à l'événement urbain de référence de la région.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PROGRAMME -->
+<div class="container">
+  <section id="programme" class="section">
+    <p class="section-label">Le 22 juillet</p>
+    <h2>Ta soirée en détail</h2>
+    <p class="section-intro">Programme du bloc Chrom — Place des Héros, Arras.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-time">16h30</span>
+        <div class="tl-content">
+          <h3>Arrivée &amp; installation</h3>
+          <p>Mise en place de ton stand, briefing avec l'équipe Chrom, essayage mannequins en loge.</p>
+        </div>
+      </div>
+      <div class="tl-item tl-highlight">
+        <span class="tl-time">18h30</span>
+        <div class="tl-content">
+          <h3>Ouverture du show — Place des Héros pleine</h3>
+          <p>Le public est en place. Ton stand est ouvert à la vente.</p>
+        </div>
+      </div>
+      <div class="tl-item tl-highlight">
+        <span class="tl-time">~19h</span>
+        <div class="tl-content">
+          <h3>Ton passage sur scène</h3>
+          <p>Tes looks en défilé dansé — mannequins, danseurs, MC qui présente ta marque en live.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">19h45</span>
+        <div class="tl-content">
+          <h3>Battle All Style</h3>
+          <p>Le public reste. Ton stand reste ouvert jusqu'à 22h30.</p>
+        </div>
+      </div>
+      <div class="tl-item">
+        <span class="tl-time">22h30</span>
+        <div class="tl-content">
+          <h3>Fin &amp; démontage</h3>
+          <p>Récupération de tes pièces, clôture du stand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONDITIONS -->
+<div class="container">
+  <section class="section">
+    <p class="section-label">Conditions de participation</p>
+    <h2>Ce qu'on attend de toi</h2>
+    <div class="cond-grid">
+      <div class="cond-block">
+        <h3>Tes pièces</h3>
+        <ul class="cond-list">
+          <li>Minimum 4 looks pour le défilé</li>
+          <li>Streetwear, urbain, hip-hop — aucune contrainte de style au-delà de l'univers culturel</li>
+          <li>Pièces récupérées par Chrom le 21 juillet et restituées après le show</li>
+        </ul>
+      </div>
+      <div class="cond-block">
+        <h3>Ta présence</h3>
+        <ul class="cond-list">
+          <li>Disponible de 16h30 à 20h le 22 juillet (installation + passage)</li>
+          <li>1 créateur + 1 accompagnant maximum en loge</li>
+          <li>Tu restes libre après ton passage — le stand tourne jusqu'à 22h30</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FORMULAIRE -->
+<div id="candidature" style="background: var(--light);">
+  <div class="container">
+    <section class="section">
+      <p class="section-label">Candidater</p>
+      <h2>Proposer sa collection</h2>
+      <div class="deadline-badge">
+        <span class="pulse"></span>
+        Candidatures ouvertes · Deadline 10 mai 2026
+      </div>
+      <div class="form-wrapper">
+        <form id="form-candidature" action="#" method="POST" onsubmit="handleSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="nom">Nom / Marque *</label>
+              <input type="text" id="nom" name="nom" placeholder="Ton nom ou ta marque" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="contact@marque.fr" required />
+            </div>
+            <div class="form-group">
+              <label for="instagram">Instagram</label>
+              <input type="text" id="instagram" name="instagram" placeholder="@tamarque" />
+            </div>
+            <div class="form-group">
+              <label for="type">Type de création *</label>
+              <select id="type" name="type" required>
+                <option value="" disabled selected>Choisir...</option>
+                <option value="createur">Créateur indépendant</option>
+                <option value="friperie">Friperie / Vintage</option>
+                <option value="retailer">Retailer / Boutique</option>
+                <option value="etudiant">Étudiant en mode</option>
+                <option value="autre">Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="looks">Nombre de looks disponibles *</label>
+              <input type="number" id="looks" name="looks" min="4" max="20" placeholder="Minimum 4" required />
+            </div>
+            <div class="form-group">
+              <label for="ville">Ville</label>
+              <input type="text" id="ville" name="ville" placeholder="Arras, Lille, Amiens..." />
+            </div>
+            <div class="form-group full">
+              <label for="univers">Décris ton univers créatif *</label>
+              <textarea id="univers" name="univers" placeholder="Quelques mots sur ton style, tes inspirations, ce que tu veux montrer..." required></textarea>
+            </div>
+            <div class="form-group full">
+              <label for="lien">Lien portfolio / site (optionnel)</label>
+              <input type="url" id="lien" name="lien" placeholder="https://..." />
+            </div>
+          </div>
+          <p class="form-note">* Champs obligatoires. Places limitées — on cherche des créateurs avec une vision, pas un CV.</p>
+          <button type="submit" class="submit-btn">Envoyer ma candidature</button>
+        </form>
+        <div id="form-success" style="display:none; padding: 32px; border: 1px solid var(--border); margin-top: 24px;">
+          <h3 style="font-size:18px; margin-bottom: 8px;">Candidature reçue ✓</h3>
+          <p style="color: var(--grey); font-size:14px;">On revient vers toi avant le 10 mai. En attendant, suis-nous sur <a href="https://instagram.com/chromclub" style="color:var(--white); text-decoration:underline;">@chromclub</a>.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="container">
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-left">
+        © 2026 Pharos Urban Fest · Défilé Urbain en partenariat avec Chrom · <a href="mailto:gabrieldebecker@icloud.com">gabrieldebecker@icloud.com</a> · <a href="https://instagram.com/chromclub">@chromclub</a>
+      </div>
+      <div class="footer-right">
+        <a href="https://instagram.com/chromclub">Instagram</a>
+        <a href="mailto:gabrieldebecker@icloud.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+
+    const data = Object.fromEntries(new FormData(e.target));
+
+    try {
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const json = await res.json();
+
+      if (!res.ok) throw new Error(json.error || 'Erreur inconnue');
+
+      document.getElementById('form-candidature').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Envoyer ma candidature';
+      alert('Une erreur est survenue : ' + err.message);
+    }
+  }
+</script>
+</body>
+</html>
