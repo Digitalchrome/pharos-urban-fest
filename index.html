@@ -404,6 +404,201 @@
     #form-success p { font-size: 15px; color: #888; line-height: 1.7; }
     #form-success a { color: var(--white); text-decoration: underline; }
 
+    /* ── FORM HINTS ─────────────────────────────────────── */
+    .label-hint {
+      font-size: 9px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--yellow);
+      margin-left: 6px; opacity: .85;
+    }
+    .field-hint {
+      font-size: 11px; color: #555; line-height: 1.5;
+      margin-top: -2px;
+    }
+
+    /* ── SCROLL REVEAL ───────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .65s cubic-bezier(.22,1,.36,1),
+                  transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .55s cubic-bezier(.22,1,.36,1),
+                  transform .55s cubic-bezier(.22,1,.36,1);
+    }
+    .stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:.04s; }
+    .stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:.13s; }
+    .stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:.22s; }
+    .stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:.31s; }
+
+    .stagger-tl > * {
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity .5s cubic-bezier(.22,1,.36,1),
+                  transform .5s cubic-bezier(.22,1,.36,1);
+    }
+    .stagger-tl.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay:.05s; }
+    .stagger-tl.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay:.14s; }
+    .stagger-tl.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay:.23s; }
+    .stagger-tl.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay:.32s; }
+
+    /* ── HERO ANIMATION ──────────────────────────────────── */
+    .pharos-logo  { opacity:0; transform:translateY(-12px);
+      transition: opacity .5s ease .05s, transform .5s ease .05s; }
+    .hero-eyebrow { opacity:0; transform:translateY(10px);
+      transition: opacity .5s ease .15s, transform .5s ease .15s; }
+    h1 .line      { display:block; overflow:hidden; }
+    h1 .line-inner {
+      display:block;
+      transform: translateY(105%);
+      transition: transform .75s cubic-bezier(.22,1,.36,1) .25s;
+    }
+    h1 .line:nth-child(2) .line-inner { transition-delay: .38s; }
+    .hero-rule    { opacity:0; transform:scaleX(0); transform-origin:left;
+      transition: opacity .4s ease .52s, transform .5s cubic-bezier(.22,1,.36,1) .52s; }
+    .hero-info-row{ opacity:0; transform:translateY(12px);
+      transition: opacity .5s ease .6s, transform .5s ease .6s; }
+    .hero-body    { opacity:0; transform:translateY(12px);
+      transition: opacity .5s ease .68s, transform .5s ease .68s; }
+    .hero-cta     { opacity:0; transform:translateY(12px);
+      transition: opacity .5s ease .76s, transform .5s ease .76s; }
+
+    body.loaded .pharos-logo,
+    body.loaded .hero-eyebrow { opacity:1; transform:none; }
+    body.loaded h1 .line-inner { transform:none; }
+    body.loaded .hero-rule     { opacity:1; transform:scaleX(1); }
+    body.loaded .hero-info-row,
+    body.loaded .hero-body,
+    body.loaded .hero-cta      { opacity:1; transform:none; }
+
+    /* ── NAV SCROLL STATE ────────────────────────────────── */
+    nav { transition: box-shadow .3s ease; }
+    nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,.6); }
+    .nav-links a {
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 0; height: 1px; background: var(--yellow);
+      transition: width .22s ease;
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── CARD HOVER EFFECTS ──────────────────────────────── */
+    .concept-card {
+      transition: background .2s ease, transform .2s ease;
+      cursor: default;
+    }
+    .concept-card:hover { background: #181818; transform: translateY(-2px); }
+
+    .offre-item {
+      transition: background .2s ease;
+    }
+    .offre-item:hover { background: #191919; }
+
+    /* ── TIMELINE ────────────────────────────────────────── */
+    .tl-item { transition: background .2s ease; }
+    .tl-item:hover { background: #111; }
+    .tl-highlight .tl-time { position: relative; }
+    .tl-highlight .tl-time::before {
+      content: '';
+      position: absolute; left: -18px; top: 50%;
+      transform: translateY(-50%);
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--cyan);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:.15;} }
+
+    /* ── BUTTON IMPROVEMENTS ─────────────────────────────── */
+    .btn-primary {
+      transition: transform .14s ease, box-shadow .14s ease, opacity .15s;
+    }
+    .btn-primary:hover {
+      opacity: 1; transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245,197,0,.28);
+    }
+    .btn-primary:active { transform: translateY(0); box-shadow: none; }
+
+    .btn-ghost {
+      transition: border-color .15s, color .15s, transform .14s ease;
+    }
+    .btn-ghost:hover { transform: translateY(-2px); }
+    .btn-ghost:active { transform: translateY(0); }
+
+    .submit-btn {
+      transition: transform .14s ease, box-shadow .14s ease, opacity .15s;
+    }
+    .submit-btn:hover:not(:disabled) {
+      opacity: 1; transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(245,197,0,.28);
+    }
+    .submit-btn:active:not(:disabled) { transform: translateY(0); box-shadow: none; }
+
+    /* ── STAT BAR ────────────────────────────────────── */
+    .stat-bar {
+      display: flex; flex-wrap: wrap;
+      border: 1px solid var(--border);
+      margin-top: 48px;
+    }
+    .stat-item {
+      flex: 1; min-width: 140px;
+      padding: 24px 28px;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    @media (max-width: 600px) {
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 36px; font-weight: 900; letter-spacing: -.01em;
+      line-height: 1; margin-bottom: 6px;
+    }
+    .stat-num.y { color: var(--yellow); }
+    .stat-num.g { color: var(--green); }
+    .stat-num.p { color: var(--pink); }
+    .stat-num.c { color: var(--cyan); }
+    .stat-label { font-size: 12px; color: #666; line-height: 1.5; }
+
+    /* ── FAQ ─────────────────────────────────────────── */
+    .faq-list { display: flex; flex-direction: column; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; background: none; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 20px 0; text-align: left;
+      font-family: 'Barlow', sans-serif;
+      font-size: 15px; font-weight: 500; color: var(--white);
+      transition: color .15s;
+    }
+    .faq-q:hover { color: var(--yellow); }
+    .faq-icon {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px; font-weight: 700; color: var(--yellow);
+      flex-shrink: 0; line-height: 1;
+      transition: transform .3s cubic-bezier(.22,1,.36,1);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s cubic-bezier(.22,1,.36,1),
+                  padding .3s ease;
+      padding: 0;
+    }
+    .faq-item.open .faq-a { max-height: 200px; padding-bottom: 20px; }
+    .faq-a p { font-size: 14px; color: #888; line-height: 1.72; }
+    .faq-a strong { color: var(--white); font-weight: 500; }
+
     /* ── FOOTER ──────────────────────────────────────── */
     footer { padding: 36px 0; border-top: 2px solid var(--yellow); }
     .footer-inner {
@@ -428,6 +623,7 @@
       <a href="#concept">Concept</a>
       <a href="#programme">Programme</a>
       <a href="#offre">Offre créateurs</a>
+      <a href="#faq">FAQ</a>
     </div>
     <a href="#candidature" class="nav-cta">Candidater</a>
   </div>
@@ -448,8 +644,8 @@
 
     <p class="hero-eyebrow">Urban Fest 2026 · Arras · En partenariat avec Chrom</p>
     <h1>
-      <span style="display:block">Défilé</span>
-      <span style="display:block" class="yellow">Urbain</span>
+      <span class="line"><span class="line-inner">Défilé</span></span>
+      <span class="line"><span class="line-inner yellow">Urbain</span></span>
     </h1>
     <hr class="hero-rule" />
     <div class="hero-info-row">
@@ -490,12 +686,12 @@
 <!-- CONCEPT -->
 <div class="wrap">
   <section id="concept" class="section">
-    <p class="s-label green">Le projet</p>
-    <h2>Mode, rue & scène live</h2>
-    <p class="s-intro">
+    <p class="s-label green reveal">Le projet</p>
+    <h2 class="reveal">Mode, rue & scène live</h2>
+    <p class="s-intro reveal">
       Ce n'est pas un défilé classique dans une salle fermée. C'est un défilé dansé en plein air, organisé par le <strong>Pharos Urban Fest</strong> — festival urbain de référence à Arras — en partenariat avec Chrom pour la direction artistique.
     </p>
-    <div class="concept-grid">
+    <div class="concept-grid stagger">
       <div class="concept-card">
         <div class="card-accent-bar y"></div>
         <div class="card-num y">01 /</div>
@@ -521,16 +717,34 @@
         <p>Un chalet 3×3 offert Place des Héros, face à la scène. Vente directe au public du festival de 18h30 à 22h30.</p>
       </div>
     </div>
+    <div class="stat-bar stagger">
+      <div class="stat-item">
+        <div class="stat-num y">Plein<br>air</div>
+        <div class="stat-label">Défilé sur la Place des Héros<br>au cœur d'Arras</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num g">4–5</div>
+        <div class="stat-label">Créateurs sélectionnés<br>par édition</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num p">8</div>
+        <div class="stat-label">Mannequins émergents<br>habillés par tes pièces</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num c">4h</div>
+        <div class="stat-label">De vente directe sur ton stand<br>face à la scène</div>
+      </div>
+    </div>
   </section>
 </div>
 
 <!-- OFFRE CRÉATEURS -->
 <div class="wrap">
   <section id="offre" class="section">
-    <p class="s-label pink">Ce que tu reçois</p>
-    <h2>L'offre créateurs</h2>
-    <p class="s-intro">Chrom prend en charge la logistique. Toi, tu amènes tes pièces et ta vision.</p>
-    <div class="offre-grid">
+    <p class="s-label pink reveal">Ce que tu reçois</p>
+    <h2 class="reveal">L'offre créateurs</h2>
+    <p class="s-intro reveal">Chrom prend en charge la logistique. Toi, tu amènes tes pièces et ta vision.</p>
+    <div class="offre-grid stagger">
       <div class="offre-item">
         <div class="offre-num">01 /</div>
         <h3>Défilé professionnel</h3>
@@ -558,10 +772,10 @@
 <!-- PROGRAMME -->
 <div class="wrap">
   <section id="programme" class="section">
-    <p class="s-label cyan">Le 22 juillet</p>
-    <h2>Ta soirée en détail</h2>
-    <p class="s-intro">Programme du bloc Chrom — Place des Héros, Arras.</p>
-    <div class="timeline">
+    <p class="s-label cyan reveal">Le 22 juillet</p>
+    <h2 class="reveal">Ta soirée en détail</h2>
+    <p class="s-intro reveal">Programme du bloc Chrom — Place des Héros, Arras.</p>
+    <div class="timeline stagger-tl">
       <div class="tl-item">
         <span class="tl-time">16h30</span>
         <div class="tl-content">
@@ -597,13 +811,13 @@
 <!-- CONDITIONS -->
 <div class="wrap">
   <section class="section">
-    <p class="s-label yellow">Conditions de participation</p>
-    <h2>Ce qu'on attend de toi</h2>
-    <div class="cond-grid">
+    <p class="s-label yellow reveal">Conditions de participation</p>
+    <h2 class="reveal">Ce qu'on attend de toi</h2>
+    <div class="cond-grid stagger">
       <div class="cond-block">
         <h3>Tes pièces</h3>
         <ul class="cond-list">
-          <li>Minimum 4 looks pour le défilé</li>
+          <li>8 à 9 looks pour le défilé (8 tenues pour mannequins + 1 pour danseur)</li>
           <li>Streetwear, urbain, hip-hop — aucune contrainte de style au-delà de l'univers culturel</li>
           <li>Pièces récupérées par Chrom le 21 juillet et restituées après le show</li>
         </ul>
@@ -620,13 +834,77 @@
   </section>
 </div>
 
+<!-- FAQ -->
+<div class="wrap">
+  <section id="faq" class="section">
+    <p class="s-label green reveal">Questions fréquentes</p>
+    <h2 class="reveal">On répond franchement</h2>
+    <div class="faq-list reveal" style="margin-top:40px; max-width:680px;">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          C'est gratuit pour le créateur ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p><strong>Oui, totalement gratuit.</strong> Stand, mannequins, captation, logistique — tout est pris en charge par Pharos Urban Fest et Chrom. Tu apportes tes pièces et ta présence.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Que se passe-t-il si j'ai moins de 8–9 looks ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>8–9 looks est l'idéal pour habiller 8 mannequins + 1 danseur. <strong>Si tu en as moins, candidate quand même</strong> — on évalue avant tout ta vision créative. On s'adapte ensemble au format.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Mes pièces sont-elles en sécurité ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Tes pièces sont récupérées par Chrom le <strong>21 juillet</strong>, conservées en loge sécurisée et <strong>restituées après le show</strong>. L'équipe est responsable de leur état pendant toute la durée de l'événement.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Je ne suis pas de la région — puis-je candidater ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p><strong>Oui.</strong> Il n'y a pas de restriction géographique. Tu dois simplement pouvoir déposer tes pièces à Arras le 21 juillet et être présent le 22 juillet entre 16h30 et 20h.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Qui sélectionne les créateurs et quand je saurai ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>La sélection est faite conjointement par l'équipe <strong>Pharos Urban Fest</strong> et <strong>Chrom</strong> sur la base de ta vision créative, ton univers et la cohérence avec l'événement. <strong>Réponse avant le 10 mai 2026</strong> pour tous les candidats.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Le stand est-il vraiment inclus, même si je ne défile pas encore ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p><strong>Le stand est réservé aux créateurs sélectionnés pour le défilé.</strong> Il fait partie du package complet — chalet 3×3, Place des Héros, 4h face à la scène. C'est une opportunité de vente directe en plus de la visibilité scène.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
 <!-- FORMULAIRE -->
 <div id="candidature" style="background: var(--surface);">
   <div class="wrap">
     <section class="section">
-      <p class="s-label yellow">Candidater</p>
-      <h2>Proposer sa collection</h2>
-      <div class="deadline-badge">
+      <p class="s-label yellow reveal">Candidater</p>
+      <h2 class="reveal">Proposer sa collection</h2>
+      <div class="deadline-badge reveal">
         <span class="pulse"></span>
         Candidatures ouvertes · Deadline 10 mai 2026
       </div>
@@ -657,8 +935,9 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="looks">Nombre de looks disponibles *</label>
-              <input type="number" id="looks" name="looks" min="4" max="20" placeholder="Minimum 4" required />
+              <label for="looks">Nombre de looks disponibles * <span class="label-hint">8–9 recommandés</span></label>
+              <input type="number" id="looks" name="looks" min="1" max="20" placeholder="ex: 8" required />
+              <span class="field-hint">Le défilé est conçu pour 8 tenues mannequins + 1 danseur — vise cet idéal si possible.</span>
             </div>
             <div class="form-group">
               <label for="ville">Ville</label>
@@ -673,7 +952,7 @@
               <input type="url" id="lien" name="lien" placeholder="https://..." />
             </div>
           </div>
-          <p class="form-note">* Champs obligatoires. Places limitées — on cherche des créateurs avec une vision, pas un CV.</p>
+          <p class="form-note">* Champs obligatoires. <strong style="color:var(--yellow)">4 à 5 créateurs sélectionnés</strong> par édition — on cherche une vision, pas un CV.</p>
           <button type="submit" class="submit-btn">Envoyer ma candidature</button>
         </form>
         <div id="form-success">
@@ -703,6 +982,44 @@
 </div>
 
 <script>
+  /* ── HERO ENTRANCE ── */
+  window.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        document.body.classList.add('loaded');
+      });
+    });
+  });
+
+  /* ── NAV SCROLL ── */
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal, .stagger, .stagger-tl').forEach(el => {
+    observer.observe(el);
+  });
+
+  /* ── FAQ ACCORDION ── */
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  /* ── FORM SUBMIT ── */
   async function handleSubmit(e) {
     e.preventDefault();
     const btn = e.target.querySelector('button[type="submit"]');
