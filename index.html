@@ -599,6 +599,82 @@
     .faq-a p { font-size: 14px; color: #888; line-height: 1.72; }
     .faq-a strong { color: var(--white); font-weight: 500; }
 
+    /* ── SPARK PARTICLES ────────────────────────────────── */
+    @keyframes spark-float {
+      0%   { transform: translateY(0)   translateX(0)   scale(1);   opacity: .9; }
+      60%  { transform: translateY(-38px) translateX(var(--sx)) scale(.7); opacity: .6; }
+      100% { transform: translateY(-64px) translateX(var(--sx2)) scale(0);  opacity: 0; }
+    }
+    .sparks { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .spark {
+      position: absolute; bottom: 6px;
+      width: 4px; height: 4px; border-radius: 50%;
+      animation: spark-float var(--dur) ease-out var(--delay) infinite;
+    }
+
+    /* ── ACCENT LINE SWEEP ───────────────────────────────── */
+    @keyframes sweep {
+      0%   { transform: scaleX(0); transform-origin: left; }
+      50%  { transform: scaleX(1); transform-origin: left; }
+      50.001% { transform: scaleX(1); transform-origin: right; }
+      100% { transform: scaleX(0); transform-origin: right; }
+    }
+    .s-label-animated::after {
+      content: ''; display: block;
+      height: 1px; margin-top: 10px; width: 100%;
+      background: currentColor; opacity: .3;
+      animation: sweep 3.5s ease-in-out infinite;
+    }
+
+    /* ── CARD ACCENT BAR SHIMMER ─────────────────────────── */
+    @keyframes shimmer {
+      0%,100% { opacity: 1; }
+      50%      { opacity: .45; }
+    }
+    .concept-card:hover .card-accent-bar {
+      animation: shimmer 1.2s ease-in-out infinite;
+    }
+
+    /* ── STAT NUM COUNT-UP GLOW ──────────────────────────── */
+    @keyframes glow-pop {
+      0%   { text-shadow: none; }
+      40%  { text-shadow: 0 0 18px currentColor; }
+      100% { text-shadow: none; }
+    }
+    .stat-bar.visible .stat-num {
+      animation: glow-pop .9s ease-out forwards;
+    }
+    .stat-bar.visible .stat-item:nth-child(1) .stat-num { animation-delay: .05s; }
+    .stat-bar.visible .stat-item:nth-child(2) .stat-num { animation-delay: .16s; }
+    .stat-bar.visible .stat-item:nth-child(3) .stat-num { animation-delay: .27s; }
+    .stat-bar.visible .stat-item:nth-child(4) .stat-num { animation-delay: .38s; }
+
+    /* ── DEADLINE BADGE SHIMMER ──────────────────────────── */
+    @keyframes badge-shine {
+      0%,100% { background-position: -200% center; }
+      50%      { background-position: 200% center; }
+    }
+    .deadline-badge {
+      background: linear-gradient(105deg,
+        var(--yellow) 40%, #fff9c4 50%, var(--yellow) 60%);
+      background-size: 200% auto;
+      animation: badge-shine 3s linear infinite;
+    }
+
+    /* ── HERO EYEBROW TICKER ─────────────────────────────── */
+    @keyframes ticker-blink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+    .hero-eyebrow::before {
+      content: '●';
+      color: var(--green);
+      margin-right: 8px;
+      font-size: 8px;
+      vertical-align: middle;
+      animation: ticker-blink 1.4s ease-in-out infinite;
+    }
+
     /* ── FOOTER ──────────────────────────────────────── */
     footer { padding: 36px 0; border-top: 2px solid var(--yellow); }
     .footer-inner {
@@ -666,7 +742,15 @@
       Un défilé de mode urbaine en plein air organisé par le <strong>Pharos Urban Fest</strong>, en partenariat avec Chrom. Mannequins professionnels, scène live, public festival. Si tu crées, c'est ta scène.
     </p>
     <div class="hero-cta">
-      <a href="#candidature" class="btn-primary">Proposer sa collection</a>
+      <a href="#candidature" class="btn-primary" style="position:relative;">
+        Proposer sa collection
+        <span class="sparks" aria-hidden="true">
+          <span class="spark" style="left:18%;background:var(--yellow);--sx:-6px;--sx2:4px;--dur:1.8s;--delay:0s"></span>
+          <span class="spark" style="left:38%;background:var(--green);--sx:8px;--sx2:-4px;--dur:2.1s;--delay:.3s"></span>
+          <span class="spark" style="left:58%;background:var(--pink);--sx:-4px;--sx2:10px;--dur:1.6s;--delay:.7s"></span>
+          <span class="spark" style="left:78%;background:var(--cyan);--sx:6px;--sx2:-8px;--dur:2.3s;--delay:.15s"></span>
+        </span>
+      </a>
       <a href="#concept" class="btn-ghost">Découvrir l'événement</a>
     </div>
   </section>
@@ -882,7 +966,7 @@
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-a">
-          <p>La sélection est faite par l'équipe <strong>Pharos Urban Fest</strong>, producteur de l'événement, avec <strong>Chrom</strong> comme partenaire créatif. Critères : vision créative, univers et cohérence avec le festival. <strong>Réponse avant le 10 mai 2026</strong> pour tous les candidats.</p>
+          <p>La sélection est faite par l'équipe <strong>Pharos Urban Fest</strong>, producteur de l'événement, avec <strong>Chrom</strong> comme partenaire créatif. Critères : vision créative, univers et cohérence avec le festival. <strong>Réponse avant le 20 mai 2026</strong> pour tous les candidats.</p>
         </div>
       </div>
       <div class="faq-item">
@@ -906,7 +990,7 @@
       <h2 class="reveal">Proposer sa collection</h2>
       <div class="deadline-badge reveal">
         <span class="pulse"></span>
-        Candidatures ouvertes · Deadline 10 mai 2026
+        Candidatures ouvertes · Deadline 20 mai 2026
       </div>
       <div class="form-wrapper">
         <form id="form-candidature" action="#" method="POST" onsubmit="handleSubmit(event)">
@@ -953,11 +1037,18 @@
             </div>
           </div>
           <p class="form-note">* Champs obligatoires. <strong style="color:var(--yellow)">4 à 5 créateurs sélectionnés</strong> par édition — on cherche une vision, pas un CV.</p>
-          <button type="submit" class="submit-btn">Envoyer ma candidature</button>
+          <button type="submit" class="submit-btn" style="position:relative;">
+            Envoyer ma candidature
+            <span class="sparks" aria-hidden="true">
+              <span class="spark" style="left:22%;background:var(--yellow);--sx:-5px;--sx2:3px;--dur:1.9s;--delay:.1s"></span>
+              <span class="spark" style="left:50%;background:var(--green);--sx:7px;--sx2:-5px;--dur:2.2s;--delay:.45s"></span>
+              <span class="spark" style="left:76%;background:var(--pink);--sx:-3px;--sx2:9px;--dur:1.7s;--delay:.8s"></span>
+            </span>
+          </button>
         </form>
         <div id="form-success">
           <h3>Candidature reçue ✓</h3>
-          <p>On revient vers toi avant le 10 mai. En attendant, suis-nous sur <a href="https://instagram.com/chromclub">@chromclub</a>.</p>
+          <p>On revient vers toi avant le 20 mai. En attendant, suis-nous sur <a href="https://instagram.com/chromclub">@chromclub</a>.</p>
         </div>
       </div>
     </section>
