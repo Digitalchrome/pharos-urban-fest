@@ -733,6 +733,7 @@
       <div class="hero-info-item">
         <span class="info-label">Lieu</span>
         <span class="info-val">Place des Héros, Arras</span>
+        <span style="font-size:11px;color:var(--dim);margin-top:2px;">Grand'Place classée UNESCO</span>
       </div>
       <div class="hero-info-item">
         <span class="info-label">Horaire</span>
@@ -968,6 +969,33 @@
           <p><strong>Oui.</strong> Le fitting se déroule en début d'après-midi le jour J, en même temps que le shooting et la préparation. Tout est organisé sur place — tu arrives à 11h30 et le reste suit naturellement.</p>
         </div>
       </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Le défilé est-il rémunéré ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>La participation est <strong>bénévole</strong>. En contrepartie, tu repars avec du contenu professionnel (photos & vidéo) utilisable librement pour ton book ou tes réseaux, et une visibilité croisée sur les canaux du Pharos Urban Fest, de Chrom et de la Ville d'Arras.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Mes photos et vidéos seront-elles publiées sans mon accord ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p><strong>Non.</strong> Chaque mannequin sélectionné signe une autorisation de droit à l'image avant le jour J. Ce document précise les supports de diffusion, la durée d'utilisation et l'usage autorisé. Rien n'est publié sans ta signature.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Quand saurai-je si ma candidature est retenue ?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Les candidatures sont examinées après la clôture du casting le <strong>30 juin</strong>. Chaque candidat reçoit une réponse par email <strong>dans les 7 jours</strong> suivant cette date, qu'il soit retenu ou non.</p>
+        </div>
+      </div>
     </div>
   </section>
 </div>
@@ -980,7 +1008,7 @@
       <h2 class="reveal">Rejoindre le casting</h2>
       <div class="deadline-badge reveal">
         <span class="pulse"></span>
-        Candidatures ouvertes
+        Candidatures ouvertes — clôture le 30 juin
       </div>
       <div class="form-wrapper">
         <form id="form-candidature" action="#" method="POST" onsubmit="handleSubmit(event)">
@@ -994,6 +1022,11 @@
               <input type="number" id="age" name="age" min="16" max="99" inputmode="numeric" placeholder="ex: 22" required />
             </div>
             <div class="form-group full">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="ton@email.com" required />
+              <span class="field-hint">On t'envoie une réponse par email dans les 7 jours suivant la clôture.</span>
+            </div>
+            <div class="form-group full">
               <label for="mensurations">Mensurations <span class="label-hint">optionnel</span></label>
               <input type="text" id="mensurations" name="mensurations" placeholder="Tour de poitrine / Taille / Hanches — ex: 90 / 70 / 95" />
               <span class="field-hint">Utile pour le fitting, mais pas obligatoire pour candidater.</span>
@@ -1003,8 +1036,9 @@
               <input type="text" id="instagram" name="instagram" placeholder="@tonpseudo" />
             </div>
             <div class="form-group">
-              <label for="lien">Lien portfolio / book</label>
-              <input type="url" id="lien" name="lien" placeholder="https://..." />
+              <label for="lien">Photo / Book / Portfolio *</label>
+              <input type="url" id="lien" name="lien" placeholder="https://..." required />
+              <span class="field-hint">Lien vers une photo récente, ton book, Instagram ou tout autre support visuel.</span>
             </div>
           </div>
           <p class="form-note">* Champs obligatoires. <strong style="color:var(--yellow)">8 mannequins sélectionnés</strong> par édition — on cherche des personnalités, pas des profils parfaits.</p>
@@ -1019,7 +1053,7 @@
         </form>
         <div id="form-success">
           <h3>Candidature reçue ✓</h3>
-          <p>Ta candidature a bien été reçue. En attendant, suis-nous sur <a href="https://instagram.com/chromclub">@chromclub</a>.</p>
+          <p>Ta candidature a bien été reçue. En attendant, suis-nous sur <a href="https://instagram.com/chromclub">@chromclub</a> pour suivre l'actualité du défilé.</p>
         </div>
       </div>
     </section>
@@ -1031,13 +1065,12 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-left">
-        © 2026 Pharos Urban Fest · Défilé Urbain en partenariat avec Chrom ·
-        <a href="mailto:gabrieldebecker@icloud.com">gabrieldebecker@icloud.com</a> ·
+        © 2026 <a href="https://www.pharos-arras.fr/" target="_blank" rel="noopener">Pharos Urban Fest</a> · Défilé Urbain en partenariat avec Chrom ·
         <a href="https://instagram.com/chromclub">@chromclub</a>
       </div>
       <div class="footer-right">
+        <a href="https://www.pharos-arras.fr/" target="_blank" rel="noopener">pharos-arras.fr</a>
         <a href="https://instagram.com/chromclub">Instagram</a>
-        <a href="mailto:gabrieldebecker@icloud.com">Contact</a>
       </div>
     </div>
   </footer>
